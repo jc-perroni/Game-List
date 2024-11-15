@@ -13,6 +13,8 @@ public class GameList {
     private long id;
     private String Name;
 
+
+    public GameList(){}
     public GameList(Long id, String name) {
         this.id = id;
         Name = name;
