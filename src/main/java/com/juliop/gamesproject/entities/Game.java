@@ -6,7 +6,7 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "tb_game")
+@Table(name = "TB_GAME")
 public class Game {
 
     @Id
