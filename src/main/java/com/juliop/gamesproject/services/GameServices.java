@@ -3,6 +3,7 @@ package com.juliop.gamesproject.services;
 import com.juliop.gamesproject.entities.Game;
 import com.juliop.gamesproject.persistence.dto.GameDTO;
 import com.juliop.gamesproject.persistence.dto.GameMinDTO;
+import com.juliop.gamesproject.projections.GameMinProjection;
 import com.juliop.gamesproject.repoositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,14 @@ public class GameServices {
     public GameDTO findById(long id) {
         Game result = gameRepository.findById(id).get();
         return new GameDTO(result);
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(long id){
+        List<GameMinProjection> projetction = gameRepository.searchByList(id);
+        return projetction
+                .stream()
+                .map(GameMinDTO::new)
+                .toList();
     }
 }

@@ -1,7 +1,5 @@
 package com.juliop.gamesproject.controllers;
 
-import com.juliop.gamesproject.entities.Game;
-import com.juliop.gamesproject.persistence.dto.GameDTO;
 import com.juliop.gamesproject.persistence.dto.GameMinDTO;
 import com.juliop.gamesproject.persistence.dto.ListDTO;
 import com.juliop.gamesproject.services.GameServices;
@@ -15,19 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/games")
-public class GameController {
+@RequestMapping(value = "/lists")
+public class ListController {
 
+    @Autowired
+    private ListServices listServices;
     @Autowired
     private GameServices gameServices;
 
     @GetMapping
-    public List<GameMinDTO> findAll(){
-        return gameServices.findAll();
-    }
-    @GetMapping(value = "/{id}")
-    public GameDTO findGame(@PathVariable Long id){
-        return gameServices.findById(id);
+    public List<ListDTO> findAllLists(){
+        return listServices.findAll();
     }
 
+    @GetMapping(value = "/{listId}/games")
+    public List<GameMinDTO> findByList(@PathVariable long listId){
+        return gameServices.findByList(listId);
+
+    }
 }

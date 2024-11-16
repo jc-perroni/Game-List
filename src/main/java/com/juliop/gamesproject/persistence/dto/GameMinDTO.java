@@ -1,6 +1,7 @@
 package com.juliop.gamesproject.persistence.dto;
 
 import com.juliop.gamesproject.entities.Game;
+import com.juliop.gamesproject.projections.GameMinProjection;
 
 public class GameMinDTO {
 
@@ -18,6 +19,14 @@ public class GameMinDTO {
         this.year = entity.getYear();
         this.imgUrl = entity.getImgUrl();
         this.shortDescription = entity.getShortDescription();
+    }
+
+    public GameMinDTO(GameMinProjection projection) {
+        this.id = projection.getId();
+        this.title = projection.getTitle();
+        this.year = projection.getYear();
+        this.imgUrl = projection.getImgUrl();
+        this.shortDescription = projection.getShortDescription();
     }
 
     public Long getId() {
