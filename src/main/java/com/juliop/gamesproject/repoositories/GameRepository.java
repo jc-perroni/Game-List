@@ -20,3 +20,10 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 	List<GameMinProjection> searchByList(Long listId);
 }
 
+
+//		SELECT POSITION, GAME_ID, GAME.TITLE
+//FROM TB_BELONGING
+//INNER JOIN TB_GAME GAME
+//WHERE GAME_ID = GAME.ID AND
+//		LIST_ID = 1
+

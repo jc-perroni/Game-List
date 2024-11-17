@@ -2,13 +2,11 @@ package com.juliop.gamesproject.controllers;
 
 import com.juliop.gamesproject.persistence.dto.GameMinDTO;
 import com.juliop.gamesproject.persistence.dto.ListDTO;
+import com.juliop.gamesproject.persistence.dto.ReplacementDTO;
 import com.juliop.gamesproject.services.GameServices;
-import com.juliop.gamesproject.services.ListServices;
+import com.juliop.gamesproject.services.GameListServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,13 +15,13 @@ import java.util.List;
 public class ListController {
 
     @Autowired
-    private ListServices listServices;
+    private GameListServices gameListServices;
     @Autowired
     private GameServices gameServices;
 
     @GetMapping
     public List<ListDTO> findAllLists(){
-        return listServices.findAll();
+        return gameListServices.findAll();
     }
 
     @GetMapping(value = "/{listId}/games")
@@ -31,4 +29,9 @@ public class ListController {
         return gameServices.findByList(listId);
 
     }
+    @PostMapping(value = "/{listId}/replacement")
+    public void move(@PathVariable long listId, @RequestBody ReplacementDTO body){
+        gameListServices.move(listId, body.originIndex(), body.destinationIndex());
+    }
+
 }

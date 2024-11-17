@@ -1,11 +1,8 @@
 package com.juliop.gamesproject.controllers;
 
-import com.juliop.gamesproject.entities.Game;
 import com.juliop.gamesproject.persistence.dto.GameDTO;
 import com.juliop.gamesproject.persistence.dto.GameMinDTO;
-import com.juliop.gamesproject.persistence.dto.ListDTO;
 import com.juliop.gamesproject.services.GameServices;
-import com.juliop.gamesproject.services.ListServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
